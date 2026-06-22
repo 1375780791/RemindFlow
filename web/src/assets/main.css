@@ -1,0 +1,128 @@
+@import './base.css';
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* ==========================================
+   Vue DevTools Inspired Glowing Gradient Theme
+   ========================================== */
+:root {
+  --gradient-devtools: linear-gradient(135deg, #00dc82 0%, #36e4da 50%, #0047e1 100%);
+  --gradient-devtools-reverse: linear-gradient(135deg, #0047e1 0%, #36e4da 50%, #00dc82 100%);
+  --color-devtools-glow-1: rgba(0, 220, 130, 0.15);
+  --color-devtools-glow-2: rgba(54, 228, 218, 0.15);
+  --color-devtools-glow-3: rgba(0, 71, 225, 0.1);
+}
+
+/* Text Gradient */
+.text-gradient-devtools {
+  background: var(--gradient-devtools);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glowing Button (Aura style, body remains dark, glow appears around it) */
+.btn-glow-devtools {
+  background: rgba(20, 22, 45, 0.9);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+.btn-glow-devtools::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 140%;
+  background: var(--gradient-devtools);
+  transform: translate(-50%, -50%) scale(0.85);
+  border-radius: inherit;
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.btn-glow-devtools:hover {
+  transform: translateY(-2px);
+  border-color: rgba(54, 228, 218, 0.4);
+  background: rgba(20, 22, 45, 0.95);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-glow-devtools:hover::before {
+  opacity: 0.55;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Glowing Border & Aura Card */
+.card-glow-devtools {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+/* Radial aura background */
+.card-glow-devtools::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top right, var(--color-devtools-glow-2) 0%, var(--color-devtools-glow-3) 60%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Gradient border overlay */
+.card-glow-devtools::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: background 0.5s ease;
+  z-index: 2;
+}
+
+.card-glow-devtools:hover {
+  border-color: transparent !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.card-glow-devtools:hover::before {
+  opacity: 1;
+}
+
+.card-glow-devtools:hover::after {
+  background: var(--gradient-devtools);
+}
+
